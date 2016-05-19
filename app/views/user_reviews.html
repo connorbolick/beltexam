@@ -1,0 +1,47 @@
+<!Doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>User Reviews</title>
+	<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div class="col-md-12" class="active">
+		<nav class="navbar navbar-light bg-faded">
+			<ul class="nav navbar-nav">
+				<li class="nav-item active">
+					<a class="nav-link.pull-*-right" href="#">Home<span class="sr-only"></span></a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link.pull-*-right" href="/add_book_review">Add Book and Review<span class="sr-only"></span></a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link.pull-*-right" href="/">Logout<span class="sr-only"></span></a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<div>
+		<h5>User Alias:{{user_info['alias']}} </h5> <label></label>
+		<h5>Name: {{user_info['name']}}</h5> <label></label>
+		<h5>Email:{{user_info['email']}}</h5> <label></label>
+		<h5>Total Reviews:{{user_info['total_reviews']}}</h5> <label></label>
+		<br>
+		<br>
+		<br>
+		<h5>Posted Reviews on the following books:</h5>
+
+			<a href="">Book Title{{book_info}}</a>
+
+	</div>
+
+
+</body>
+</html>

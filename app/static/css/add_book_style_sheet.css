@@ -1,0 +1,12 @@
+* {
+  font-family: monaco;
+}
+
+#book_title, #txt_title{
+	display: inline-block;
+	vertical-align: top;
+}
+#lbl_rev, #lbl_txt{
+	display: inline-block;
+	vertical-align: top;
+}
