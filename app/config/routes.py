@@ -25,7 +25,8 @@ routes['POST']['/add_book_review']='Books#create_book'
 routes['POST']['/add_review']='Books#create_new_review'
 routes['GET']['/books/<book_id>']='Books#add_review'
 routes['GET']['/users/<id>']='Users#user_show'
-routes['GET']['/users/<id>']='Books#show_books'
+routes['GET']['/logout']='Users#log_out'
+# routes['GET']['/users/<id>']='Books#show_books'
 """
     You can add routes and specify their handlers as follows:
 

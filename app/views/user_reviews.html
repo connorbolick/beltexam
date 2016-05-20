@@ -37,9 +37,14 @@
 		<br>
 		<br>
 		<h5>Posted Reviews on the following books:</h5>
-
-			<a href="">Book Title{{book_info}}</a>
-
+		{{book_info}}
+			
+		{%for book in books%}
+		  
+		  <li><a href="/books/{{book['id']}}">{{book['title']}}</a></li>
+		{%endfor%}
+			
+			
 	</div>
 
 

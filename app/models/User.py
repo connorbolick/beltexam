@@ -81,6 +81,11 @@ class User(Model):
         data = {'id':id}
 
         return self.db.query_db(query, data)
+
+    def show_books(self, id):
+        query="select books.title, books.id from books JOIN users ON books.user_id=users.id"
+        data = {'id':id}
+        return self.db.query_db(query, data)
     """
     Below is an example of a model method that queries the database for all users in a fictitious application
     

@@ -98,9 +98,9 @@ class Books(Controller):
         url = "/books/"+str(data['book_id'])
         return redirect(url)
     
-    def show_books(self, id):
-        books=self.models['Book'].show_books(id)
-        book_info=books[0]
-        print book_info
-        return self.load_view('user_reviews.html', book_info=book_info)
+    # def show_books(self, id):
+    #     books=self.models['Book'].show_books(id)
+    #     book_info=books[0]
+    #     print book_info
+    #     return self.load_view('user_reviews.html', book_info=book_info)
     

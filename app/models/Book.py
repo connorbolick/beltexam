@@ -88,10 +88,10 @@ class Book(Model):
         }
         return self.db.query_db(query, data)
         
-    def show_books(self, id):
-        query="select books.title from books JOIN users ON books.user_id=users.id"
-        data = {'id':id}
-        return self.db.query_db(query, data)
+    # def show_books(self, id):
+    #     query="select books.title from books JOIN users ON books.user_id=users.id"
+    #     data = {'id':id}
+    #     return self.db.query_db(query, data)
 
 
     """

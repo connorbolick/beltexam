@@ -106,10 +106,17 @@ class Users(Controller):
             return redirect('/')
 
     def user_show(self, id):
+        books=self.models['User'].show_books(id)
+
         info=self.models['User'].user_show(id)
         user_info=info[0]
         print user_info
-        return self.load_view('user_reviews.html', user_info=user_info)
+        return self.load_view('user_reviews.html', user_info=user_info, books=books)
+
+    def log_out(self):
+            session['name']=" "
+            session['id']=0
+            return redirect('/')
 
 
 
