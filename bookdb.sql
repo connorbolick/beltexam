@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `bookdb` /*!40100 DEFAULT CHARACTER SET latin1 */
 USE `bookdb`;
 -- MySQL dump 10.13  Distrib 5.7.9, for osx10.9 (x86_64)
 --
--- Host: localhost    Database: bookdb
+-- Host: 127.0.0.1    Database: bookdb
 -- ------------------------------------------------------
 -- Server version	5.5.42
 
@@ -28,7 +28,7 @@ CREATE TABLE `authors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `author_name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `authors` (
 
 LOCK TABLES `authors` WRITE;
 /*!40000 ALTER TABLE `authors` DISABLE KEYS */;
-INSERT INTO `authors` VALUES (25,'author1'),(26,'author2'),(27,'author3');
+INSERT INTO `authors` VALUES (1,'Tina Fey'),(2,'Ernest Hemingway');
 /*!40000 ALTER TABLE `authors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,9 +57,9 @@ CREATE TABLE `books` (
   PRIMARY KEY (`id`),
   KEY `fk_books_users_idx` (`user_id`),
   KEY `fk_books_authors1_idx` (`author_id`),
-  CONSTRAINT `fk_books_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_books_authors1` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_books_authors1` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_books_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `books` (
 
 LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
-INSERT INTO `books` VALUES (47,'BOOK1',NULL,6,25),(48,'Book2',NULL,6,26),(49,'BOOK3',NULL,6,27),(50,'BOOK4',NULL,6,26);
+INSERT INTO `books` VALUES (1,'Bossy pants',NULL,4,1),(2,'Grapes of Wrath',NULL,5,2);
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,9 +90,9 @@ CREATE TABLE `reviews` (
   PRIMARY KEY (`id`),
   KEY `fk_reviews_books1_idx` (`book_id`),
   KEY `fk_reviews_users1_idx` (`user_id`),
-  CONSTRAINT `fk_reviews_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_reviews_books1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_reviews_books1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_reviews_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +101,7 @@ CREATE TABLE `reviews` (
 
 LOCK TABLES `reviews` WRITE;
 /*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
-INSERT INTO `reviews` VALUES (45,1,'THIS IS REVIEW 1 FOR BOOK1 AND AUTHOR 1','2016-05-17 16:13:43','2016-05-17 16:13:43',47,6),(46,1,'THIS IS REVIEW 1 FOR BOOK 2 AUTHOR 2','2016-05-17 16:14:54','2016-05-17 16:14:54',48,6),(47,4,'THIS IS REVIEW 1 FOR BOOK3 AUTHOR3','2016-05-17 16:15:50','2016-05-17 16:15:50',49,6),(48,3,'THIS IS REVIEW 1 FOR BOOK4 AUTHOR 2','2016-05-17 16:16:37','2016-05-17 16:16:37',50,6),(49,1,'This is review 2 for book id 50','2016-05-17 17:22:30',NULL,50,6),(50,1,'This is review 2 for Book 3','2016-05-17 18:31:07',NULL,49,6);
+INSERT INTO `reviews` VALUES (1,4,'This book was lots of fun but has lots of gay related subjects matter so don\'t get upset when you guy friends heckle it. \r\n\r\nOtherwise, lots of laughs.','2016-05-18 15:21:04','2016-05-18 15:21:04',1,4),(2,3,'Second review of bossy pants test\r\nrating 3/5','2016-05-18 15:23:36',NULL,1,4),(3,5,'Good book to cry with. There is lots of hunger and sadness. I encourage anyone intelligent to read it','2016-05-18 15:31:18','2016-05-18 15:31:18',2,5),(4,1,'Not a crying book! I was kidding guyzzz.','2016-05-18 15:31:52',NULL,2,5);
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,9 +119,8 @@ CREATE TABLE `users` (
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +129,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (6,'user1','user1','user1@abc.com','$2b$12$bzczG/8CT1KOIxS1MgXWae6/VZ.UTzYul8bcVV6FiqzNWmDJLjXvm',NULL);
+INSERT INTO `users` VALUES (1,'Meena','Meenu','meena@meena.com','$2b$12$ha/7zX2RFDzvnsN0sKtVuOK9dOKCM.rLNaAdWTxULA/fdCC0vla8u',NULL),(2,'connor','bolick','connor.bolick@gmail.com','$2b$12$3JFaGMpxwY3WaXBJuX16iOurvZ/c9dYQIE.o/SdDzNFWfzRRo2YdS',NULL),(3,'perry','bolick','perrybolick@gmail.com','$2b$12$WEkOkk9jItQPStTXzB9fx.GNqn9iBtO0MOWythe8UV9QqqEFpgowq',NULL),(4,'shannon','beck','shannon.e.beck@gmail.com','$2b$12$vMrhUmTavFxVvnQbjmGKVuN9w/CIAoV7.uN0PpZ6DudESU5Uy2WRK',NULL),(5,'grant ','McMillan','gmcmillan@clemson.edu','$2b$12$TTJzHq..0yUHzFNghkMpUu806uDadg2DMrcvevdD2H97oty9qHDi2',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -143,4 +142,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-19 15:41:19
+-- Dump completed on 2016-05-18 17:24:23
