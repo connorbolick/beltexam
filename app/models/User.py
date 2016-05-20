@@ -1,7 +1,7 @@
-""" 
+"""
     Sample Model File
 
-    A Model should be in charge of communicating with the Database. 
+    A Model should be in charge of communicating with the Database.
     Define specific model method that query the database for information.
     Then call upon these model method in your controller.
 
@@ -25,7 +25,7 @@ class User(Model):
 
         elif len(info['name']) < 2:
             errors.append('First Name must be at least 2 characters long')
-        
+
         if not info['email']:
             errors.append('Email cannot be blank')
         elif not EMAIL_REGEX.match(info['email']):
@@ -43,13 +43,13 @@ class User(Model):
         else:
             pw_hash = self.bcrypt.generate_password_hash(info['password'])
             # Code to insert user goes here...
-            query_insert="INSERT INTO users (name, alias, email, password) VALUES (:name, :alias, :email, :password)"
-            data={'name':info['name'],'alias':info['alias'], 'email':info['email'],'password':pw_hash}
+            query_insert="INSERT INTO users (name, alias, email, password, dob) VALUES (:name, :alias, :email, :password, :dob)"
+            data={'name':info['name'],'alias':info['alias'], 'email':info['email'],'password':pw_hash, 'dob':info['dob']}
             self.db.query_db(query_insert, data)
             # Then retrieve the last inserted user.
             get_user_query = "SELECT * FROM users ORDER BY id DESC LIMIT 1"
             users = self.db.query_db(get_user_query)
-    
+
             status = { "status": True, "user": users[0] }
             return status
 
@@ -77,7 +77,7 @@ class User(Model):
 
     def user_show(self, id):
         query= "Select COUNT(reviews.review) as total_reviews, users.name, users.alias, users.email from reviews JOIN users ON reviews.user_id = users.id GROUP BY users.name "
-        
+
         data = {'id':id}
 
         return self.db.query_db(query, data)
@@ -88,7 +88,7 @@ class User(Model):
         return self.db.query_db(query, data)
     """
     Below is an example of a model method that queries the database for all users in a fictitious application
-    
+
     Every model has access to the "self.db.query_db" method which allows you to interact with the database
 
     def get_users(self):
@@ -105,7 +105,7 @@ class User(Model):
         data = {'message': 'awesome bro', 'users_id': 1}
         self.db.query_db(sql, data)
         return True
-    
+
     def grab_messages(self):
         query = "SELECT * from messages where users_id = :user_id"
         data = {'user_id':1}
